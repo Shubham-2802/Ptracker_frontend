@@ -20,35 +20,35 @@ class Signin extends Component{
 	}
 
 	onSigninSubmit = () =>{
-		this.props.onRouteChange('Datashow');}
-	// 	fetch('https://localhost:3001/signIn',{
-	// 		method: 'POST',
-	// 		headers: {'Content-Type': 'application/json'},
-	// 		body: JSON.stringify({
-	// 			username:this.state.username,
-	// 			password:this.state.password
-	// 		})
-	// 	})
-	// 	.then(response => response.json())
-	// 	.then(response => {
- //        if (response) {
-	//                 fetch('https://localhost:3001/Showuserdata',{
-	//                 method: 'get',
-	//                 headers: {'Content-Type': 'application/json'},
-	//                 body: JSON.stringify({
-	//                   id:this.state.user.id
-	//             })
-	//           })
-	// 		.then(user => {
-	// 			//console.log(user)
-	// 			if(user.id){
-	// 				this.props.onLoadUser(user);
-	// 				this.props.onRouteChange('Datashow');
-	// 				}
-	// 			})
-	// 		}
-	// 	})
-	// }
+		//this.props.onRouteChange('Datashow');
+		fetch('https://localhost:3001/signIn',{
+			method: 'POST',
+			headers: {'Content-Type': 'application/json'},
+			body: JSON.stringify({
+				username:this.state.username,
+				password:this.state.password
+			})
+		})
+		.then(response => response.json())
+		.then(response => {
+        if (response) {
+	                fetch('https://localhost:3001/Showuserdata',{
+	                method: 'get',
+	                headers: {'Content-Type': 'application/json'},
+	                body: JSON.stringify({
+	                  id:this.state.user.id
+	            })
+	          })
+			.then(user => {
+				//console.log(user)
+				if(user.id){
+					this.props.onLoadUser(user);
+					this.props.onRouteChange('Datashow');
+					}
+				})
+			}
+		})
+	}
 
 	render() {
 		const { onRouteChange } = this.props;
